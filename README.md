@@ -1,6 +1,6 @@
 ## This Docker image combine remote JNLP Jenkins slave and Docker inception, to build inside docker more docker images dynamicaly
 
-inspired by and credits to
+inspired by and credits to:<br>
 [JNLP Slave](https://hub.docker.com/r/jenkinsci/jnlp-slave/)<br>
 [DockerInDocker docker/dind](https://hub.docker.com/_/docker/)
 
