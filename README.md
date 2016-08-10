@@ -1,19 +1,20 @@
-## Jenkins JNLP slave Docker image for running jenkins maven jobs
+## This Docker image combine remote JNLP Jenkins slave and Docker inception, to build inside docker more docker images dynamicaly
 
 inspired by and credits to
 [`jenkinsci/jnlp-slave`](https://hub.docker.com/r/jenkinsci/jnlp-slave/)
+[DockerInDocker docker/dind](https://hub.docker.com/_/docker/)
 
 A [Jenkins](https://jenkins-ci.org) slave using JNLP to establish connection.
 
 See [Jenkins Distributed builds](https://wiki.jenkins-ci.org/display/JENKINS/Distributed+builds) for more info.
 
-Make sure your ECS container agent is [updated](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html) before running. Older versions do not properly handle the entryPoint parameter. See the [entryPoint](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions) definition for more information.
+See [Docker inception](https://github.com/jpetazzo/dind)
 
 ## Running
 
-To run a Docker container
+To run a Docker container, it is important to run it in **privileged** mode, like:
 
-    docker run oviis/jenkins-maven-slave -url http://jenkins-server:port <secret> <slave name>
+    docker run --privileged oviis/jenkins-dind-slave:v1 -url http://jenkins-server:port <secret> <slave name>
 
 optional environment variables:
 
@@ -22,5 +23,7 @@ optional environment variables:
 
 ## image Stack
 
-the Image have also a git jdk8 and maven inside, for building into slave Java projects
+the Image have been build on the docker alpine base <br>
+and have a openjdk8-jre inside <br>
+and a docker daemon started as a jenkins user
 
