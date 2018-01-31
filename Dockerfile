@@ -33,9 +33,12 @@ COPY jenkins-slave /usr/local/bin/jenkins-slave
 USER root
 RUN chmod +x /usr/local/bin/jenkins-slave
 RUN chown root:jenkins /usr/local/bin/docker
+#RUN chown root:jenkins -R /root
+#RUN chmod g+wr -R /root 
 
 USER jenkins
 VOLUME $JENKINS_HOME
 WORKDIR $JENKINS_HOME
+RUN mkdir $JENKINS_HOME/.docker
 
 ENTRYPOINT ["/usr/local/bin/jenkins-slave"]
